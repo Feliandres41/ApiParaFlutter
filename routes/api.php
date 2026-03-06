@@ -1,0 +1,7 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContactoController;
+
+Route::post('/contactos', [ContactoController::class, 'store']);
+Route::get('/contactos', [ContactoController::class, 'index']);
