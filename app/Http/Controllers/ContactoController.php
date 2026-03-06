@@ -24,4 +24,22 @@ class ContactoController extends Controller
     {
         return response()->json(Contacto::all());
     }
+
+    
+    public function destroy($id)
+    {
+        $contacto = Contacto::find($id);
+
+        if(!$contacto){
+            return response()->json([
+                "mensaje" => "Contacto no encontrado"
+            ],404);
+        }
+
+        $contacto->delete();
+
+        return response()->json([
+            "mensaje" => "Contacto eliminado correctamente"
+        ],200);
+    }
 }
