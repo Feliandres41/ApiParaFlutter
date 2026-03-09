@@ -42,4 +42,23 @@ class ContactoController extends Controller
             "mensaje" => "Contacto eliminado correctamente"
         ],200);
     }
+    public function update(Request $request, $id)
+    {
+        $contacto = Contacto::find($id);
+
+        if (!$contacto) {
+            return response()->json([
+                "message" => "Contacto no encontrado"
+            ], 404);
+        }
+
+        $contacto->nombre = $request->nombre;
+        $contacto->numero = $request->numero;
+        $contacto->save();
+
+        return response()->json([
+            "message" => "Contacto actualizado",
+            "data" => $contacto
+        ], 200);
+    }
 }
